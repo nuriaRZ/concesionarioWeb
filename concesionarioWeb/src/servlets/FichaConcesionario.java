@@ -118,7 +118,7 @@ public class FichaConcesionario extends SuperTipoServlet {
 					"<h1>Ficha de Concesionario</h1>\r\n" + 
 					"<a href=\"ListadoConcesionario\">Ir al listado de Concesionarios</a>" +
 					"<form id=\"form1\" name=\"form1\" method=\"post\" action=\"FichaConcesionario\" onsubmit=\"return validateForm()\" enctype=\"multipart/form-data\">\r\n" +
-					" <img src=\"../utils/DownloadImagenConcesionario?idConcesionario=" +  concesionario.getId()  + "\" width='100px' height='100px'/>" +
+					" <img src=\"utils/DownloadImagenConcesionario?idConcesionario=" +  concesionario.getId()  + "\" width='100px' height='100px'/>" +
 					" <input type=\"hidden\" name=\"idConcesionario\" value=\"" + concesionario.getId()  + "\"\\>" +
 					"  <p>\r\n" + 
 					"    <label for=\"ficheroImagen\">Imagen:</label>\r\n" + 
