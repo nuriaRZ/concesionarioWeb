@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import modelo.Cliente;
+import modelo.Concesionario;
 
 
 
@@ -128,6 +129,24 @@ public class ClienteControlador extends Controlador {
 		List<Cliente> resultado = (List<Cliente>) q.getResultList();
 		em.close();
 		return resultado;
+	}
+	
+	public List<Cliente> findAllLimited (int limit, int offset) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		Query q = em.createQuery("SELECT c FROM Cliente c", Cliente.class);
+		q.setMaxResults(limit);
+		q.setFirstResult(offset);
+		List<Cliente> resultado = (List<Cliente>) q.getResultList();
+		em.close();
+		return resultado;
+	}
+	
+	public int numRegistros() {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		Query q = em.createNativeQuery("Select count(*) from cliente");
+		Long cantidad = (Long) q.getSingleResult();
+		em.close();
+		return cantidad.intValue();
 	}
 	
 

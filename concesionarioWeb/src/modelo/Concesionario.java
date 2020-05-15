@@ -69,4 +69,11 @@ public class Concesionario extends Entidad implements Serializable {
 		this.nombre = nombre;
 	}
 
+	@Override
+	public String toString() {
+		return  nombre ;
+	}
+	
+	
+
 }

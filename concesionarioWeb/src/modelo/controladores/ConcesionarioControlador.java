@@ -129,6 +129,24 @@ public class ConcesionarioControlador extends Controlador {
 		return resultado;
 	}
 	
+	public List<Concesionario> findAllLimited (int limit, int offset) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		Query q = em.createQuery("SELECT c FROM Concesionario c", Concesionario.class);
+		q.setMaxResults(limit);
+		q.setFirstResult(offset);
+		List<Concesionario> resultado = (List<Concesionario>) q.getResultList();
+		em.close();
+		return resultado;
+	}
+	
+	public int numRegistros() {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		Query q = em.createNativeQuery("Select count(*) from concesionario");
+		Long cantidad = (Long) q.getSingleResult();
+		em.close();
+		return cantidad.intValue();
+	}
+	
 
 	
 	public static String toString (Concesionario concesionario) {

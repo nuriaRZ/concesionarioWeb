@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import modelo.Concesionario;
 import modelo.Venta;
 import modelo.controladores.Controlador;
 
@@ -127,6 +128,24 @@ public class VentaControlador extends Controlador {
 		List<Venta> resultado = (List<Venta>) q.getResultList();
 		em.close();
 		return resultado;
+	}
+	
+	public List<Venta> findAllLimited (int limit, int offset) {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		Query q = em.createQuery("SELECT v FROM Venta v", Venta.class);
+		q.setMaxResults(limit);
+		q.setFirstResult(offset);
+		List<Venta> resultado = (List<Venta>) q.getResultList();
+		em.close();
+		return resultado;
+	}
+	
+	public int numRegistros() {
+		EntityManager em = getEntityManagerFactory().createEntityManager();
+		Query q = em.createNativeQuery("Select count(*) from venta");
+		Long cantidad = (Long) q.getSingleResult();
+		em.close();
+		return cantidad.intValue();
 	}
 	
 
